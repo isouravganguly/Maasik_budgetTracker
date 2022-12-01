@@ -1,5 +1,7 @@
 package com.maasik_;
 
+import androidx.multidex.MultiDexApplication;
+
 import android.app.Application;
 import android.content.Context;
 import com.facebook.react.PackageList;
