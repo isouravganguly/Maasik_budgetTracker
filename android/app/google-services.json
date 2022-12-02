@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "354667024220",
+    "project_id": "maasik-788e1",
+    "storage_bucket": "maasik-788e1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:354667024220:android:64376cff8f03caaf9fbb99",
+        "android_client_info": {
+          "package_name": "com.maasik_"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "354667024220-i0lo83mi38dntkdfaak4dtt0bnms8b2f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCXakbdFYfimMsQJ-n1Uo7rO94WYpSZzx4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "354667024220-i0lo83mi38dntkdfaak4dtt0bnms8b2f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
