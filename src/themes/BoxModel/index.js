@@ -11,6 +11,16 @@ const borderRadius ={
   x3: 30,
   x4: 40,
   x5: 50,
+};
+
+const length = {
+  l1: 10,
+  l2: 20,
+  l3: 30,
+  l4: 40,
+  l5: 50,
+  l6: 60,
+  l7: 70, 
 }
 
-export const box = {boxModel, borderRadius};
+export const box = {boxModel, borderRadius, length};

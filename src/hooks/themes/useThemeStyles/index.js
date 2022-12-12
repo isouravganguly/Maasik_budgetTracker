@@ -1,8 +1,8 @@
-import useTheme from "../useTheme";
+import useTheme from '../useTheme';
 
-const useThemeStyles = (styles)=>{
-    const theme = useTheme()
-    return styles(theme)
-}
+const useThemeStyles = styles => {
+  const theme = useTheme();
+  return styles(theme);
+};
 
-export default useThemeStyles
+export default useThemeStyles;

@@ -1,46 +1,48 @@
 import { StyleSheet } from "react-native";
 
-import useThemeStyles from "../../hooks/themes/useThemeStyles";
-
-const styles = theme =>{
+const styles = theme =>
 StyleSheet.create({
 
     button:{
-        padding: theme.box.boxModel.L,
+        justifyContent: "center",
+        alignItems: "center",
+        flexDirection: "row",
+        padding: theme.box.boxModel.M,
         borderRadius: theme.box.borderRadius.x2,
-        width: theme.box.boxModel.XL,
+        width: "70%"
     },
 
     // ------------ TYPES -------------------
 
     fill:{
-        backgroundColor: theme.color.Secondary,
+        backgroundColor: theme.colors.Secondary,
     },
     outline:{
-        backgroundColor: theme.color.secondaryBackground,
+        backgroundColor: theme.colors.secondaryBackground,
         borderWidth: 2,
-        borderColor: theme.color.TextColor,
+        borderColor: theme.colors.TextColor,
     },
     ghost:{
-        backgroundColor: theme.color.secondaryBackground,
-        borderColor: theme.color.Background,
+        backgroundColor: theme.colors.secondaryBackground,
+        borderColor: theme.colors.Background,
     },
 
     // ------------ STATUS -------------------
 
     disable:{
-        backgroundColor: theme.color.Secondary,
+        backgroundColor: theme.colors.Secondary,
         borderWidth: 2,
-        borderColor: theme.color.secondaryBackground,
+        borderColor: theme.colors.secondaryBackground,
         opacity: 0.6,
     },
     able:{
-        backgroundColor: theme.color.Secondary,
+        backgroundColor: theme.colors.Secondary,
         borderWidth:2,
-        borderColor: theme.color.secondaryBackground,
+        borderColor: theme.colors.secondaryBackground,
         opacity: 0.6,
 
     }
 });
-}
+
+export default styles
     
