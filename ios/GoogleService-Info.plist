@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>354667024220-pv5u7bj5e7jf0cdm5cauj1ufcm87npqd.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.354667024220-pv5u7bj5e7jf0cdm5cauj1ufcm87npqd</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>354667024220-hv3ifosbta4lb03tp7emcd0h311svbqo.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCO7RrFEX7snA3Uj1xeTLcbccFVoEVfkew</string>
+	<key>GCM_SENDER_ID</key>
+	<string>354667024220</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>org.reactjs.native.example.maasik-</string>
+	<key>PROJECT_ID</key>
+	<string>maasik-788e1</string>
+	<key>STORAGE_BUCKET</key>
+	<string>maasik-788e1.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:354667024220:ios:f3251fed3ec934c49fbb99</string>
+</dict>
+</plist>

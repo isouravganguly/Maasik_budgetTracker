@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">maasik_</string>
+<string name="facebook_app_id">797804547946829</string>
+<string name="fb_login_protocol_scheme">fb797804547946829</string>
+<string name="facebook_client_token">9dd9901258ae2bb5f16575254e365092</string>
 </resources>
