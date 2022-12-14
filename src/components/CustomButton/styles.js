@@ -9,7 +9,7 @@ StyleSheet.create({
         flexDirection: "row",
         padding: theme.box.boxModel.M,
         borderRadius: theme.box.borderRadius.x2,
-        width: "70%"
+        // width: "70%"
     },
 
     // ------------ TYPES -------------------

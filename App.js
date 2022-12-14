@@ -8,6 +8,10 @@ import {persistor, store} from './src/Redux/Store';
 import ThemeProvider from './src/themes/ThemeProvider';
 // import Hometest from './src/screens/Tests/Hometest'
 import RootNavigation from './src/Navigations/RootNavigation/Root';
+import ProgressBar from './src/components/progressBar';
+import AppScreen from './src/screens/AppScreen';
+import Card from './src/components/Card';
+import Header from './src/components/Header';
 
 const App = () => {
   return(
@@ -16,9 +20,11 @@ const App = () => {
       {/* <PersistGate loading={null} persistor={persistor}> */}
       <NavigationContainer>
         <ThemeProvider>
-          <RootNavigation />
-          {/* <Userdetails /> */}
-          {/* <Hometest /> */}
+          {/* <RootNavigation /> */}
+          {/* <ProgressBar /> */}
+          {/* <Card /> */}
+          <Header />
+          <AppScreen />
         </ThemeProvider>
       </NavigationContainer>
       

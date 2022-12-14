@@ -7,7 +7,7 @@ const boxModel = {
 
 const borderRadius ={
   x1: 10,
-  x2: 20,
+  x2: 25,
   x3: 30,
   x4: 40,
   x5: 50,

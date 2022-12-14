@@ -1,17 +1,15 @@
 const White = '#ffffff';
-const offWhite = '#EDEDED';
-const Blue = '#48BEFF';
-const Bluish = '#3DFAFF';
-const Green = '#43C59E';
-const GrayGreen = '#3D7068';
-const darkGreen = '#14453D';
+const offWhite = '#F8F8F8';
+const primary = '#57BD83';
+const secondary = '#388D5B';
+const textGreen = '#008037'
 const Black = '#000';
-const liteBlack = '#2B2B2B';
+const liteBlack = '#545454';
 
 const comman = {
-  Primary: Blue,
-  Secondary: Bluish,
-  Tertiary: Green,
+  Primary: primary,
+  Secondary: secondary,
+  highlightText: textGreen,
 };
 
 const light = {
@@ -20,6 +18,7 @@ const light = {
   secondaryBackground: offWhite,
   TextColor: Black,
   SecondaryTextColor: liteBlack,
+  
 };
 
 const dark = {
