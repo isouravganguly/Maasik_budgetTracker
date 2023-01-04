@@ -156,15 +156,11 @@ const Dashboard = ({navigation}) => {
       </CustomModal>
 
       {editOption.current && ( // Show the edit option -> only when user is on current month
-        <CustomButton
-          type="FILLED"
-          icon="plus"
-          shape="ROUND"
-          // style={style.addCategoryButton}
-          onpress={() => setShowModal(true)}
-        />
+        <TouchableOpacity onPress={() => setShowModal(true)} style={style.addCategoryButton}>
+          <Icon name="plus-circle" size={50} color="green" />
+        </TouchableOpacity>
         // <View style={{backgroundColor: 'white',  borderRadius: 50}}>
-        //   <Icon name="plus-circle" size={50} color="green" />
+        //
         // </View>
       )}
 
