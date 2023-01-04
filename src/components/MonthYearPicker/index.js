@@ -62,7 +62,7 @@ const DatePicker = ({date, setDate, editOption}) => {
         shape="WIDE"
         onpress={() => showPicker(true)}>
         <Text style={style.datePickerButtonText}>
-          {monthList[date.getMonth()]}
+          {monthList[date.getMonth()] + ", " + date.getFullYear()}
         </Text>
       </CustomButton>
 

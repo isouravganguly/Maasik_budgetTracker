@@ -23,6 +23,7 @@ import CreateForm from '../../components/createForm';
 import styles from './styles';
 import ErrorBox from '../../components/ErrorBox';
 import ProgressBar from '../../components/progressBar';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const Dashboard = ({navigation}) => {
   const editOption = useRef(true); // Edit option on the category
@@ -162,6 +163,9 @@ const Dashboard = ({navigation}) => {
           // style={style.addCategoryButton}
           onpress={() => setShowModal(true)}
         />
+        // <View style={{backgroundColor: 'white',  borderRadius: 50}}>
+        //   <Icon name="plus-circle" size={50} color="green" />
+        // </View>
       )}
 
       {/* Month Picker -> Left-Bottom Button */}

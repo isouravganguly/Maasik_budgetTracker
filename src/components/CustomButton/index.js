@@ -63,7 +63,7 @@ const CustomButton = props => {
       onPress={() => props.onpress()}>
       {props.text && <Text style={[style.buttonText, {color: color}]}>{props.text}</Text>}
       {props.children}
-      {props.icon && <Icon name={props.icon} size={25} color={color} />}
+      {props.icon && <Icon name={props.icon} size={20} color={color} />}
     </TouchableOpacity>
   );
 };

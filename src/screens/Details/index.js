@@ -90,7 +90,6 @@ const Details = ({route}) => {
       <View style={style.subContainer}>
         <View style={style.header}>
           <Text style={style.TitleText}>{category}</Text>
-          <View style={style.line} />
         </View>
         <Text style={style.amount}>{budgetData.spent}</Text>
         <Text style={style.subTitleText}>Spent so far</Text>

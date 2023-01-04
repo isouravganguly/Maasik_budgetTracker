@@ -47,8 +47,8 @@ StyleSheet.create({
     // ------------ SHAPE -------------------
 
     round:{
-        // padding: theme.box.boxModel.XL,
-        borderRadius: theme.box.borderRadius.x5,
+        padding: theme.box.boxModel.L,
+        borderRadius: theme.box.borderRadius.x2,
     },
 
     wide: {
