@@ -15,13 +15,12 @@ const expense = [];
 
 const createNewCategory = async label => {
   const email = await AsyncStorage.getItem('Email');
-  console.log('label', label[0].data);
+
   const category = label[0].data;
   const budget = label[1].data;
 
   // const expense = [{item: "cloth", price: 1200}, {item: "cloth", price: 1200}, {item: "cloth", price: 1200},{item: "cloth", price: 1200}];
   try {
-    console.log(email);
     await firestore()
       .collection('budget')
       .doc(email)
@@ -54,7 +53,6 @@ const addExpense = async labels => {
   const category = labels.category;
 
   const email = await AsyncStorage.getItem('Email');
-  console.log('email at addexpense', email, category);
 
   try {
     await firestore()
@@ -64,9 +62,7 @@ const addExpense = async labels => {
       .doc(category)
       .get()
       .then(data => {
-        console.log('expense data ', data);
         expenseArray = [...data.data().expense, newData];
-        console.log('expenseArray', expenseArray);
       });
 
     await firestore()
@@ -75,9 +71,7 @@ const addExpense = async labels => {
       .collection(monthYear)
       .doc(category)
       .update({expense: expenseArray})
-      .then(() => {
-        console.log('update Successful');
-      });
+      .then(() => {});
 
     firestore()
       .collection('budget')
@@ -86,7 +80,6 @@ const addExpense = async labels => {
       .doc(category)
       .get()
       .then(data => {
-        console.log('this at controller', data.data(), newData.spent);
         spent = parseInt(data.data().spent) + parseInt(newData.spent);
 
         firestore()
@@ -94,10 +87,7 @@ const addExpense = async labels => {
           .doc(email)
           .collection(monthYear)
           .doc(category)
-          .update({"spent": spent})
-          .then(() => {
-            console.log('spent added in controller', spent);
-          });
+          .update({spent: spent});
       });
   } catch (error) {
     console.error(error);
@@ -107,7 +97,6 @@ const addExpense = async labels => {
 const getUserData = async email => {
   const res = await firestore().collection('Users').doc(email).get();
   const userData = res.data();
-  console.log('im inside controller', userData);
   return userData === undefined ? undefined : userData;
 };
 

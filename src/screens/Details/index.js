@@ -19,8 +19,6 @@ const Details = ({route}) => {
   const {category, monthYear, item} = route.params;
   const email = useContext(EmailContext);
 
-  console.log('HERE AT DETAILS PAGE', email);
-
   const editOption = useRef(true); // Edit option on the category
   const [date, setDate] = useState(new Date());
 
@@ -39,8 +37,7 @@ const Details = ({route}) => {
     {label: 'Item', type: 'String', data: ''},
     {label: 'Spent', type: 'Number', data: null},
   ]);
-  console.log('category title -- ', category);
-  console.log(email.email, monthYear);
+
 
   const getData = () => {
     try {
@@ -50,10 +47,7 @@ const Details = ({route}) => {
         .collection(monthYear)
         .doc(category)
         .onSnapshot(datas => {
-          console.log('email', email.email);
-          console.log(datas.data());
           setExpense(datas.data().expense);
-          // datas.forEach(d => console.log(d.data()));
         });
 
       firestore()
@@ -74,12 +68,10 @@ const Details = ({route}) => {
     // Form data [label & input] needed to createForm using hook ------
     labels.category = category;
 
-    console.log('labels --- ', labels);
     Controller.addExpense(labels);
   };
 
   const renderItem = ({item}) => {
-    console.log('itemssss --- ', item);
     return (
       <View
         style={{

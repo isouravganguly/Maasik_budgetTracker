@@ -4,7 +4,6 @@ import React from 'react';
 import {imageHandler} from '../../../assets/images/imageHandler';
 
 const BackImage = ({URI}) => {
-  console.log(URI);
   return (
     <View style={styles.container}>
       <View style={styles.imageSize}>

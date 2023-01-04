@@ -19,15 +19,15 @@ const RootNavigation = () => {
     try {
       await AsyncStorage.setItem('Email', user.email);
     } catch (e) {
-      console.log('error at root, storing email -', e);
+      console.error('error at root, storing email -', e);
     }
   };
 
   useEffect(() => {
     if (user !== undefined) {
-      console.log('USER at ROOT', user);
+
       email.EmailHandler(user.email);
-      console.log('Email at ROOOT --- ', email);
+
       storeEmail();
     }
   }, [user]);
@@ -45,7 +45,7 @@ const UserNavigation = ({email}) => {
   const [userdata, setUserdata] = useState(undefined);
   const [loading, setLoading] = useState(true);
   // add a firebase listener to user collection -> email data -> Snapshot
-  console.log('root email', email);
+
   try {
     useEffect(() => {
       setLoading(true);
@@ -53,7 +53,7 @@ const UserNavigation = ({email}) => {
         .collection('Users')
         .doc(email)
         .onSnapshot(datas => {
-          console.log(datas);
+
           // when you get data in Snapshot, update the local isdata state
           const userdetails = datas.data();
           setUserdata(userdetails);

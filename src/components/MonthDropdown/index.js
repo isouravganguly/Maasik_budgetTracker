@@ -31,7 +31,6 @@ const MonthDropdown = (
     if(index<10)
         index = "0" + index
         const choosenMonthYear = index+monthYear.slice(2)
-        console.log("choosenMonthYear",choosenMonthYear)
         setMonthYear(choosenMonthYear)
         setShowDropDown(!showDropDown)
   }

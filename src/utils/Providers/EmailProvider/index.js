@@ -10,7 +10,6 @@ const EmailProvider = ({children}) => {
   };
 
   const nameHandler = name => {
-    console.log('name at name handler', name);
     setName(name);
   };
 

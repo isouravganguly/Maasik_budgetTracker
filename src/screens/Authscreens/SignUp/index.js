@@ -39,27 +39,27 @@ const SignUp = ({navigation}) => {
         );
       } catch (error) {
         if (error.code === 'auth/email-already-in-use') {
-          console.log('That email address is already in use!');
+          console.error('That email address is already in use!');
         }
 
         if (error.code === 'auth/invalid-email') {
-          console.log('That email address is invalid!');
+          console.error('That email address is invalid!');
         }
 
         if (error.code === 'auth/weak-password') {
-          console.log('That email address is invalid!');
+          console.error('That email address is invalid!');
         }
 
         if (error.code === 'auth/invalid-phone-number') {
-          console.log('That email address is invalid!');
+          console.error('That email address is invalid!');
         }
 
         if (error.code === 'auth/network-request-failed') {
-          console.log('That email address is invalid!');
+          console.error('That email address is invalid!');
         }
 
         if (error.code === 'auth/invalid-password') {
-          console.log('That email address is invalid!');
+          console.error('That email address is invalid!');
         }
 
         console.error(error);

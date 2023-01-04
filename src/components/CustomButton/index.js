@@ -55,7 +55,6 @@ const CustomButton = props => {
   const statusStyle = statusHandle(props.status);
   const typeStyle = typeHandle(props.type);
   const shapeStyle = shapeHandle(props.shape);
-  console.log('shape Style', shapeStyle);
   const color = iconColor();
 
   return (

@@ -35,10 +35,8 @@ const DatePicker = ({date, setDate, editOption}) => {
 
       // Get present monthYear, get selected(by user) monthYear --
       const present = new Date().getMonth() + '' + new Date().getFullYear();
-      console.log("present", present)
       const selected =
         selectedDate.getMonth() + '' + selectedDate.getFullYear();
-        console.log("selected", selected)
 
       // If monthYear vary -> remove edit options
       if (present !== selected) {

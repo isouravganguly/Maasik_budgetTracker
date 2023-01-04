@@ -28,7 +28,6 @@ const SignIn = ({navigation}) => {
         .then(() => {
           console.log('User account signed in!');
           const user = auth().currentUser;
-          console.log(user);
         })
         .catch(error => {
           if (error.code === 'auth/user-not-found') {
@@ -36,12 +35,12 @@ const SignIn = ({navigation}) => {
           }
 
           if (error.code === 'auth/invalid-email') {
-            console.log('That email address is invalid!');
+            console.error('That email address is invalid!');
             setMessage('That email address is invalid!');
           }
 
           if (error.code === 'auth/wrong-password') {
-            console.log('wrong password');
+            console.error('wrong password');
             setMessage('wrong password');
           }
           console.error(error);

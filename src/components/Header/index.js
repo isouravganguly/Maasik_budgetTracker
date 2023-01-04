@@ -15,9 +15,7 @@ const Header = props => {
   // multiple rerenders of the header has to be removed !
   const style = useThemeStyles(styles);
   const theme = useTheme();
-  const userData = useContext(EmailContext);
-  console.log('user data at header --', userData);
-  console.log('props at the Header', props);
+  // const userData = useContext(EmailContext);
 
   return (
     <SafeAreaView style={style.headerContainer}>

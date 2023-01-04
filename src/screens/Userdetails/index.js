@@ -54,7 +54,7 @@ const Userdetails = ({navigation}) => {
       labels[2].data !== null
     ) {
       setLoading(true);
-      console.log('createUser');
+
 
       const inputs = {
         Name: labels[0].data,
@@ -64,9 +64,9 @@ const Userdetails = ({navigation}) => {
 
       // hook to create user
       const done = useCreateUser(inputs, email);
-      console.log("input.Name -- ", inputs.Name)
+
       userData.nameHandler(inputs.Name);
-      console.log('userdata at userdetails --', userData);
+
 
       if (!done) {
         alert('Had an error creating user');
@@ -76,7 +76,7 @@ const Userdetails = ({navigation}) => {
 
       setLoading(false);
     } else {
-      console.log('Fill all fields!');
+
     }
   };
 
