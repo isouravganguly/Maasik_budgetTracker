@@ -1,34 +1,42 @@
-import { StyleSheet } from "react-native";
-import { ScreenStackHeaderRightView } from "react-native-screens";
+import {StyleSheet} from 'react-native';
+import { ThemeContext } from '../../themes/ThemeProvider';
 
-const styles = theme => 
-    StyleSheet.create({
-        modalView:{
-            marginTop: 50,
-            height: "50%",
-            margin: 20,
-    backgroundColor: "white",
-    borderRadius: 20,
-    padding: 25,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2
+const styles = theme =>
+  StyleSheet.create({
+    modalView: {
+      marginTop: "20%",
+      height: '50%',
+      margin: 20,
+      backgroundColor: theme.colors.Background,
+      borderRadius: 20,
+      padding: 25,
+      shadowColor: '#000',
+      shadowOffset: {
+        width: 0,
+        height: 2,
+      },
+      shadowOpacity: 0.25,
+      shadowRadius: 4,
+      elevation: 5,
     },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5
-  },
 
-        roundButton:{
-            alignSelf: "flex-end",
-            // position: "absolute",
-            padding: 10,
-            // right: 20,
-            // top: 20,
-            borderRadius: 25,
-            backgroundColor: theme.colors.secondaryBackground,
-        }
-    })
+    closeButton: {
+      alignSelf: 'flex-end',
+      fontWeight: theme.typography.size.M,
+    },
 
-    export default styles
+    modalHeader:{
+      alignSelf: 'center',
+      fontSize: theme.typography.size.L,
+      color: theme.colors.TextColor,
+      fontWeight: theme.typography.weight.bold,
+    },
+
+    modalChild:{
+      flex: 1,
+      justifyContent: 'space-around',
+      alignItems: 'center',
+    }
+  });
+
+export default styles;

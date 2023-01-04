@@ -5,18 +5,17 @@ const styles = theme =>
     progressBar: {
       borderRadius: theme.box.borderRadius.x2,
       height: theme.box.length.l2,
-      width: '90%',
-      backgroundColor: theme.colors.Background,
+      // width: '90%',
+      backgroundColor: theme.colors.secondaryBackground,
       margin: theme.box.boxModel.M,
+      marginVertical: theme.box.boxModel.L,
     },
 
-    realProgress: width => ({
+    realProgress: {
       borderRadius: theme.box.borderRadius.x2,
-      backgroundColor: theme.colors.Primary,
+      backgroundColor: theme.colors.Secondary,
       height: theme.box.length.l2,
-      width: width,
-      
-    }),
+    },
   });
 
 export default styles;

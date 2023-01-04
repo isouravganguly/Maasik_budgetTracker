@@ -7,13 +7,15 @@ import useThemeStyles from '../../hooks/themes/useThemeStyles';
 import styles from './styles';
 
 
-const InputBox = ({label, fields}) => {
+const InputBox = ({label}) => {
   const style = useThemeStyles(styles);
   const [data, setData] = useState();
 
+  // console.log("label in input box", label)
+
   const textUpdate = (dataValue)=>{
     setData(dataValue)
-    fields[label.label] = dataValue
+    label.data = dataValue
   }
 
   return (
@@ -25,7 +27,7 @@ const InputBox = ({label, fields}) => {
         placeholder={label.label}
         autoCapitalize={false}
         autoCorrect={false}
-        autoComplete={false}
+        autoCompleteType={false}
         autoFocus={false}
       />
     </View>

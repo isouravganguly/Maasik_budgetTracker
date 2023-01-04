@@ -1,50 +1,23 @@
-import {
-  Button,
-//   ImageBackground,
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-  useWindowDimensions,
-} from 'react-native';
-import React, {useState} from 'react';
+import {Text, TextInput, View} from 'react-native';
+import React, {useState, useRef} from 'react';
 import auth from '@react-native-firebase/auth';
+import useThemeStyles from '../../../hooks/themes/useThemeStyles';
+
+import styles from './styles';
+import CustomButton from '../../../components/CustomButton';
+import ErrorBox from '../../../components/ErrorBox';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
 // import Error from '../../components/notifications/errors';
 
 const SignIn = ({navigation}) => {
+  const style = useThemeStyles(styles);
   const [value, setValue] = useState({
     email: '',
     password: '',
-    showSignUp: false,
-    forgotPas: false,
   });
 
-  const showSignUp = () => {
-    return (
-      <View
-        style={{
-          backgroundColor: 'yellow',
-          height: '5%',
-          width: '60%',
-          borderRadius: 10,
-        }}>
-        { (
-          <Button
-            onPress={() => navigation.navigate('SignUp')}
-            title="signUp?"
-          />
-        )}
-        {value.forgotPas && (
-          <Button
-            onPress={() => navigation.navigate('SignUp')}
-            title="forgot Password?"
-          />
-        )}
-      </View>
-    );
-  };
+  const [message, setMessage] = useState(null);
 
   const signInHandler = async () => {
     if (value.email === '' || value.password === '') {
@@ -59,17 +32,17 @@ const SignIn = ({navigation}) => {
         })
         .catch(error => {
           if (error.code === 'auth/user-not-found') {
-            setValue({...value, showSignUp: true});
+            setMessage('User could not be found');
           }
 
           if (error.code === 'auth/invalid-email') {
             console.log('That email address is invalid!');
-            setValue({...value, showSignUp: true});
+            setMessage('That email address is invalid!');
           }
 
           if (error.code === 'auth/wrong-password') {
             console.log('wrong password');
-            setValue({...value, forgotPas: true});
+            setMessage('wrong password');
           }
           console.error(error);
         });
@@ -77,99 +50,50 @@ const SignIn = ({navigation}) => {
   };
 
   return (
-    <View
-    //   source={require('../../../assets/images/appBackground.png')}
-    //   resizeMethod="cover"
-      style={styles.loginBackground}>
-      <Text style={styles.LoginText}>MAASIK</Text>
+    <>
+      {message !== null && (
+          <ErrorBox message={message}  setMessage = {setMessage} />
+      )}
+      <View style={style.loginBackground}>
+        <Text style={style.LoginText}>MAASIK</Text>
 
-      <View style={styles.container}>
-        <TextInput
-          style={[styles.inputBox, styles.shadow]}
-          value={value.email}
-          onChangeText={text => setValue({...value, email: text})}
-          placeholder="email"
-          autoCapitalize={false}
-          autoCorrect={false}
-        />
-        <TextInput
-          style={[styles.inputBox, styles.shadow]}
-          onChangeText={p => setValue({...value, password: p})}
-          secureTextEntry={true}
-          placeholder="Password"
-        />
+        <View style={style.container}>
+          <TextInput
+            style={[style.inputBox, style.shadow]}
+            value={value.email}
+            onChangeText={text => setValue({...value, email: text})}
+            placeholder="Email"
+            autoCapitalize={false}
+            autoCorrect={false}
+          />
+          <TextInput
+            style={[style.inputBox, style.shadow]}
+            onChangeText={p => setValue({...value, password: p})}
+            secureTextEntry={true}
+            placeholder="Password"
+          />
 
-        <TouchableOpacity onPress={() => signInHandler()} style={styles.button}>
-          <Text style={styles.buttonText}>Login</Text>
-        </TouchableOpacity>
+          <View style={style.AuthButtons}>
+            <CustomButton
+              text="LOGIN"
+              icon="arrow-right"
+              shape="WIDE"
+              status="ABLE"
+              type="FILLED"
+              onpress={() => signInHandler()}
+            />
+            <CustomButton
+              shape="WIDE"
+              status="ABLE"
+              onpress={() => navigation.navigate('SignUp')}>
+              <Text>register now,</Text>
+              <Text style={style.signUpText}>Sign Up?</Text>
+            </CustomButton>
+          </View>
+        </View>
       </View>
-
-      {showSignUp()}
-      {/* {value.forgotPas && showSignUp() */}
-    </View>
+    </>
   );
 };
+
 export default SignIn;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-
-  loginBackground: {
-    flex: 1,
-    alignItems: 'center',
-  },
-
-  LoginText: {
-    position: 'absolute',
-    top: 200,
-    fontSize: 50,
-    fontWeight: '700',
-    marginBottom: 50,
-  },
-
-  inputBox: {
-    backgroundColor: 'white',
-    borderRadius: 20,
-    minWidth: '60%',
-    padding: 8,
-    margin: 8,
-    height: 40,
-    fontSize: 25,
-    height: 50,
-    paddingLeft: 15,
-  },
-
-  shadow: {
-    shadowColor: 'gray',
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 0.2,
-    shadowRadius: 5,
-
-    elevation: 3,
-  },
-
-  button: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    minWidth: '60%',
-    borderRadius: 20,
-    backgroundColor: 'green',
-    height: 50,
-
-    margin: 10,
-    padding: 8,
-  },
-
-  buttonText: {
-    fontWeight: '500',
-    color: 'white',
-    fontSize: 20,
-  },
-});

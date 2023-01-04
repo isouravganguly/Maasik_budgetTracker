@@ -3,6 +3,7 @@ const size = {
   M: 22,
   L: 30,
   XL: 40,
+  XXL: 60,
 };
 
 const weight = {

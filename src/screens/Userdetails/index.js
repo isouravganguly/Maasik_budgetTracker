@@ -1,17 +1,32 @@
-import {ActivityIndicator, View} from 'react-native';
-import React, {useRef, useState, useEffect} from 'react';
+import {
+  ActivityIndicator,
+  View,
+  Text,
+  ImageBackground,
+  Image,
+} from 'react-native';
+import React, {useRef, useState, useEffect, useContext} from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import firestore from '@react-native-firebase/firestore';
+import auth from '@react-native-firebase/auth';
 
 // -- Custom Component ----
 import CreateForm from '../../components/createForm';
 import CustomButton from '../../components/CustomButton';
 import useCreateUser from '../../hooks/useCreateUser';
+import ImageArea from '../../components/ImageArea';
+import {imageHandler} from '../../../assets/images/imageHandler';
+import {SafeAreaView} from 'react-native-safe-area-context';
+import {EmailContext} from '../../utils/Providers/EmailProvider';
 
-const Userdetails = ({navigation, route}) => {
-  const [loading, setLoading] = useState(true);
+const Userdetails = ({navigation}) => {
+  const [loading, setLoading] = useState(false); // loading state
+  const userData = useContext(EmailContext);
+
+  const email = userData.email;
 
   //  ----------------Labels Array to create the form ------------
-  const labels = [
+  const labels = useRef([
     {
       label: 'Name',
       type: 'String',
@@ -27,64 +42,67 @@ const Userdetails = ({navigation, route}) => {
       type: 'numeric',
       data: null,
     },
-  ];
+  ]).current;
 
-  // ---- Get the user data (once)  ----------
-  useEffect(() => {
-    userDetails();
-  }, []);
-
-  // --- The data to store in databse ----
-  const inputFields = useRef({
-    Name: '',
-    Age: null,
-    Phone: '',
-  }).current;
-
-  const userDetails = () => {
-    firestore()
-      .collection('Users')
-      .doc(route?.email)
-      .get()
-      .then(data => {
-        if (data.data() !== undefined) {
-          navigation.navigator('App');
-        }
-      })
-      .catch(err => {
-        console.log(err);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  };
+  // -- [Object]-Variable to store the FORM data ---
 
   // ----- Creates the user with given data ----
   const createUser = () => {
-    const done = useCreateUser(inputFields);
-    if (!done) {
-      alert('Had an error creating user');
+    if (
+      labels[0].data !== null &&
+      labels[1].data !== null &&
+      labels[2].data !== null
+    ) {
+      setLoading(true);
+      console.log('createUser');
+
+      const inputs = {
+        Name: labels[0].data,
+        Phone: labels[1].data,
+        Age: labels[2].data,
+      };
+
+      // hook to create user
+      const done = useCreateUser(inputs, email);
+      console.log("input.Name -- ", inputs.Name)
+      userData.nameHandler(inputs.Name);
+      console.log('userdata at userdetails --', userData);
+
+      if (!done) {
+        alert('Had an error creating user');
+      } else {
+        // navigation.navigate('Home');
+      }
+
+      setLoading(false);
     } else {
-      navigation.navigate('App');
+      console.log('Fill all fields!');
     }
   };
 
   const FormHandler = () => {
     return (
-      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        <CreateForm labels={labels} fields={inputFields} />
+      <View style={{flex: 1, alignItems: 'center'}}>
+        <CreateForm labels={labels} />
         <CustomButton
           status="ABLE"
           type="FILLED"
           icon="arrow-right"
           text="Add Me!"
-          onpress={() => createUser()} // calls Hook, error if user not created
+          shape="WIDE"
+          onpress={() => createUser()} // a function to call [useCreateUser] Hook, error if user not created
         />
       </View>
     );
   };
 
-  return (loading ? <ActivityIndicator size="large" /> : <FormHandler />)
+  return (
+    <SafeAreaView style={{flex: 1}}>
+      <ImageArea URI="enterData" />
+
+      {loading ? <ActivityIndicator size="large" /> : <FormHandler />}
+    </SafeAreaView>
+  );
 };
 
 export default Userdetails;

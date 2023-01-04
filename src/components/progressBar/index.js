@@ -1,38 +1,37 @@
 // --- Third Party Libraries ----
-import {View, Animated} from 'react-native';
-import React, {useRef, useEffect, useState} from 'react';
+import {View} from 'react-native';
+import React, {useEffect} from 'react';
 
 //  -- Custom Components ----
 import styles from './styles';
 import useThemeStyles from '../../hooks/themes/useThemeStyles';
+import Animated, {
+  useAnimatedStyle,
+  useSharedValue,
+  withSpring,
+} from 'react-native-reanimated';
 
 const ProgressBar = ({percent, width}) => {
-
-  const animatedValue = useRef(new Animated.Value(-1000)).current;
-
   const style = useThemeStyles(styles);
 
-  const progressBarChange = () => {
-    Animated.spring(animatedValue, {
-      toValue: (width * (percent / 100)) - width,
-      useNativeDriver: true,
-    }).start();
-  };
+  const progress = useSharedValue(0);
+
+  const animateProgress = useAnimatedStyle(() => {
+    return {
+      width: progress.value + '%',
+    };
+  });
 
   useEffect(() => {
-    progressBarChange();
+    progress.value = withSpring(percent);
   }, [percent, width]);
 
-  return (
-      <View style={[style.progressBar]}>
-        <Animated.View
-          style={[
-            style.realProgress(width),
-            {transform: [{translateX: animatedValue}]},
-          ]}
-        />
-      </View>
+  // width * (percent / 100) - width,
 
+  return (
+    <View style={[style.progressBar]}>
+      <Animated.View style={[style.realProgress, animateProgress]} />
+    </View>
   );
 };
 

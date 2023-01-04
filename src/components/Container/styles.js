@@ -2,10 +2,11 @@ import {StyleSheet} from 'react-native';
 const styles = theme =>
   StyleSheet.create({
     container: {
-      justifyContent: 'center',
-      alignItems: 'center',
-      padding: theme.box.boxModel.M,
-      borderRadius: theme.box.borderRadius.x1
+      flex:1,
+      // justifyContent: 'center',
+      // alignItems: 'center',
+      paddingVertical: theme.box.boxModel.M,
+      // borderRadius: theme.box.borderRadius.x1
     },
   });
 

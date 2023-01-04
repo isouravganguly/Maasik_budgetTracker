@@ -1,40 +1,39 @@
-import {StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import React, {useEffect} from 'react';
+import 'react-native-gesture-handler';
 import {NavigationContainer} from '@react-navigation/native';
-import {Provider} from 'react-redux';
-import {PersistGate} from 'redux-persist/integration/react';
+import SplashScreen from 'react-native-splash-screen';
 
-import {persistor, store} from './src/Redux/Store';
+// --- To implement redux persist ---
+// import {Provider} from 'react-redux';
+// import {PersistGate} from 'redux-persist/integration/react';
+// import {persistor, store} from './src/Redux/Store';
+
 import ThemeProvider from './src/themes/ThemeProvider';
-// import Hometest from './src/screens/Tests/Hometest'
+import EmailProvider from './src/utils/Providers/EmailProvider';
 import RootNavigation from './src/Navigations/RootNavigation/Root';
-import ProgressBar from './src/components/progressBar';
-import AppScreen from './src/screens/AppScreen';
-import Card from './src/components/Card';
-import Header from './src/components/Header';
 
 const App = () => {
-  return(
+  useEffect(() => {
+    SplashScreen.hide(); //hides the splash screen on app load.
+  }, []);
+
+  return (
     <>
-   {/* <Provider store={store}> */}
+      {/* <Provider store={store}> */}
       {/* <PersistGate loading={null} persistor={persistor}> */}
+
       <NavigationContainer>
-        <ThemeProvider>
-          {/* <RootNavigation /> */}
-          {/* <ProgressBar /> */}
-          {/* <Card /> */}
-          <Header />
-          <AppScreen />
-        </ThemeProvider>
+        <EmailProvider>
+          <ThemeProvider>
+            <RootNavigation />
+          </ThemeProvider>
+        </EmailProvider>
       </NavigationContainer>
-      
-      
+
       {/* </PersistGate> */}
-     {/* </Provider> */}
+      {/* </Provider> */}
     </>
   );
 };
 
 export default App;
-
-const styles = StyleSheet.create({});

@@ -1,15 +1,19 @@
-import { StyleSheet } from "react-native"
+import {StyleSheet} from 'react-native';
 
-const styles = theme => StyleSheet.create({
+const styles = theme =>
+  StyleSheet.create({
     helloname: {
-        fontSize: theme.typography.size.XL,
-        fontWeight: theme.typography.weight.bold,
+      fontSize: theme.typography.size.L,
+      fontWeight: theme.typography.weight.bold,
+      color: theme.colors.TextColor,
     },
 
-    headerContainer:{
-        marginTop: 30,
-        padding: 30,
-    }
-})
+    headerContainer: {
+      flexDirection: 'row',
+      justifyContent: 'space-around',
+      alignItems: 'center',
+      backgroundColor: theme.colors.secondaryBackground,
+    },
+  });
 
-export default styles
+export default styles;

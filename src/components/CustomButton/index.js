@@ -1,14 +1,15 @@
-import { Text, TouchableOpacity } from 'react-native';
+import {Text, TouchableOpacity} from 'react-native';
 import React from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 // custom components -----------
 import useThemeStyles from '../../hooks/themes/useThemeStyles';
+import useTheme from '../../hooks/themes/useTheme';
 import styles from './styles';
 
-const CustomButton = (props) => {
-
-    const style = useThemeStyles(styles);
+const CustomButton = props => {
+  const style = useThemeStyles(styles);
+  const theme = useTheme();
 
   const statusHandle = status => {
     switch (status) {
@@ -30,16 +31,40 @@ const CustomButton = (props) => {
     }
   };
 
+  const shapeHandle = shape => {
+    switch (shape) {
+      case 'ROUND':
+        return style.round;
+      case 'WIDE':
+        return style.wide;
+    }
+  };
+
+  const iconColor = () => {
+    if (
+      props.type === 'GHOST' ||
+      props.type === 'OUTLINE' ||
+      props.status === 'DISABLE'
+    ) {
+      return theme.colors.TextColor;
+    } else {
+      return '#fafafa';
+    }
+  };
+
   const statusStyle = statusHandle(props.status);
   const typeStyle = typeHandle(props.type);
+  const shapeStyle = shapeHandle(props.shape);
+  console.log('shape Style', shapeStyle);
+  const color = iconColor();
 
   return (
     <TouchableOpacity
-      style={[style.button, statusStyle, typeStyle, props.style]}
-      onPress={() => props.onpress()}
-    >
-      <Text>{props.text}</Text>
-      {props.icon && <Icon name={props.icon} size={30} color="#fafafa" />}
+      style={[style.button, statusStyle, typeStyle, shapeStyle, props.style]}
+      onPress={() => props.onpress()}>
+      {props.text && <Text style={[style.buttonText, {color: color}]}>{props.text}</Text>}
+      {props.children}
+      {props.icon && <Icon name={props.icon} size={25} color={color} />}
     </TouchableOpacity>
   );
 };

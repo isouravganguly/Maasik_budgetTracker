@@ -1,18 +1,47 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import useThemeStyles from '../../hooks/themes/useThemeStyles'
-import styles from './styles'
+import {StyleSheet, Text, Switch, View} from 'react-native';
+import React, {useState, useEffect, useContext} from 'react';
+import auth from '@react-native-firebase/auth';
+import useThemeStyles from '../../hooks/themes/useThemeStyles';
+import useTheme from '../../hooks/themes/useTheme';
+import CustomButton from '../CustomButton';
+import {SafeAreaView} from 'react-native';
+import useAuth from '../../hooks/Auth/useAuth';
+import {EmailContext} from '../../utils/Providers/EmailProvider';
+// import {useNavigation} from '@react-navigation/native';
 
-const Header = () => {
+import styles from './styles';
 
-    const style = useThemeStyles(styles)
+const Header = props => {
+  // multiple rerenders of the header has to be removed !
+  const style = useThemeStyles(styles);
+  const theme = useTheme();
+  const userData = useContext(EmailContext);
+  console.log('user data at header --', userData);
+  console.log('props at the Header', props);
 
   return (
-    <View style = {style.headerContainer}>
-      <Text style= {style.helloname}>Hi, Joy</Text>
-    </View>
-  )
-}
+    <SafeAreaView style={style.headerContainer}>
+      {props.navigation.canGoBack() && (
+        <CustomButton
+          icon="arrow-left"
+          shape="ROUND"
+          type="GHOST"
+          onpress={() => props.navigation.goBack()}
+        />
+      )}
+      {/* <Text style={style.helloname}>Hi, {userData.name}</Text> */}
+      <Text style={style.helloname}>Expensify</Text>
 
-export default Header
+      <Switch onValueChange={theme.toggleTheme} value={theme.isLightTheme} />
+      <CustomButton
+        status="ABLE"
+        type="GHOST"
+        icon="bars"
+        shape="ROUND"
+        onpress={() => props.navigation.openDrawer()}
+      />
+    </SafeAreaView>
+  );
+};
 
+export default Header;

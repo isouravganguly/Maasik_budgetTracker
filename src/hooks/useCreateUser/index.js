@@ -1,20 +1,16 @@
 import firestore from '@react-native-firebase/firestore';
-import { useRef } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const useCreateUser = async (newUser, email) => {
-  // If I use Persist
-  // const {email} = useSelector(state => state.email);
-
+const useCreateUser = async (inputs, email) => {
   try {
-    await firestore()
-      .collection('Users')
-      .doc(email)
-      .set(newUser)
+    console.log("in user", email)
+    await firestore().collection('Users').doc(email).set({details: inputs});
 
   } catch (error) {
-    console.error(error);
-    return false
+    console.error("this is the error", error);
+    return false;
   }
+  AsyncStorage.setItem('userDetails', JSON.stringify(inputs));
 
   return true;
 };

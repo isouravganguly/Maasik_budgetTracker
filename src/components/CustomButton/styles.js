@@ -4,14 +4,17 @@ const styles = theme =>
 StyleSheet.create({
 
     button:{
-        justifyContent: "center",
-        alignItems: "center",
+        justifyContent: "space-around",
+        // alignItems: "center",
         flexDirection: "row",
-        padding: theme.box.boxModel.M,
-        borderRadius: theme.box.borderRadius.x2,
-        // width: "70%"
     },
 
+    buttonText: {
+        fontWeight: theme.typography.weight.bold,
+        color: theme.colors.Background,
+        fontSize: theme.typography.size.M,
+        padding: theme.box.boxModel.S,
+    },
     // ------------ TYPES -------------------
 
     fill:{
@@ -23,8 +26,6 @@ StyleSheet.create({
         borderColor: theme.colors.TextColor,
     },
     ghost:{
-        backgroundColor: theme.colors.secondaryBackground,
-        borderColor: theme.colors.Background,
     },
 
     // ------------ STATUS -------------------
@@ -40,6 +41,21 @@ StyleSheet.create({
         borderWidth:2,
         borderColor: theme.colors.secondaryBackground,
         opacity: 0.6,
+
+    },
+
+    // ------------ SHAPE -------------------
+
+    round:{
+        // padding: theme.box.boxModel.XL,
+        borderRadius: theme.box.borderRadius.x5,
+    },
+
+    wide: {
+        padding: theme.box.boxModel.M,
+        paddingHorizontal: "8%",
+        borderRadius: theme.box.borderRadius.x2,
+        padding: theme.box.boxModel.M,
 
     }
 });

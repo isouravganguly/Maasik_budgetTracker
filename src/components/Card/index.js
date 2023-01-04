@@ -1,18 +1,18 @@
-import {Text, View} from 'react-native';
+import {Text, View, TouchableOpacity} from 'react-native';
 import React, {useState} from 'react';
 import ProgressBar from '../progressBar';
 import Container from '../Container';
 import styles from './styles';
 import useThemeStyles from '../../hooks/themes/useThemeStyles';
 
-const Card = userBudget => {
+const Card = ({item}) => {
   const style = useThemeStyles(styles);
 
   const [width, setWidth] = useState(0);
 
   return (
     <Container style={style.subcontainer}>
-      <Text style={style.cardTitle}>Shopping</Text>
+      <Text style={style.cardTitle}>{item.title}</Text>
       <View
         onLayout={e => {
           const width = e.nativeEvent.layout.width;
@@ -21,32 +21,33 @@ const Card = userBudget => {
         style={{
           flexDirection: 'row',
           justifyContent: 'space-around',
-          width: '100%',
-          height: 120,
+          // alignItems: 'space-around',
+          height: 110,
+          // width: e.nativeEvent.layout.width
         }}>
         <View style={{justifyContent: 'space-around'}}>
           <View style={style.textbox}>
-            <Text style={style.cardInfoTitle}>Budget Share</Text>
-            <Text style={style.cardInfoSubtitle}>12%</Text>
+            <Text style={style.cardInfoTitle}>Share</Text>
+            <Text style={style.cardInfoSubtitle}>{item.budgetShare}%</Text>
           </View>
           <View>
             <Text style={style.cardInfoTitle}>Estimated</Text>
-            <Text style={style.cardInfoSubtitle}>30,000</Text>
+            <Text style={style.cardInfoSubtitle}>{item.estimated}</Text>
           </View>
         </View>
 
         <View style={{justifyContent: 'space-around'}}>
-          <View>
+          <View style={style.textbox}>
             <Text style={style.cardInfoTitle}>Spent</Text>
-            <Text style={style.cardInfoSubtitle}>3600</Text>
+            <Text style={style.cardInfoSubtitle}>{item.spent}</Text>
           </View>
           <View>
             <Text style={style.cardInfoTitle}>Amount Left</Text>
-            <Text style={style.cardInfoSubtitle}>26,400</Text>
+            <Text style={style.cardInfoSubtitle}>{item.amountLeft}</Text>
           </View>
         </View>
       </View>
-      {<ProgressBar percent={40} width={width} />}
+      {<ProgressBar percent={item.budgetShare} width={width} />}
     </Container>
   );
 };
